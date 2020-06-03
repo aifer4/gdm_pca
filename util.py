@@ -44,3 +44,36 @@ def deriv(x,f):
     df[1:] = np.diff(f)/np.diff(x)
     df[0] = df[1]
     return df
+
+
+
+@numba.njit()
+def Powit(J_static, Sigma, m):
+    """Power iteration eigensolver. Gets largest m eigenvalues of J^T \Sigma J."""
+    J = np.copy(J_static)
+    n = 200
+    # get N largest eigenvalues and eigenvectors of A using power iteration
+    N = len(J.T)
+    err = np.zeros((m,n))
+    
+    # arrays U and L eigenvectors and eigenvalues respectively
+    U = np.zeros((N,m))
+    L = np.zeros(m)
+    
+    # initialize the eigenvector 'guess' to a random unit vector
+    u = np.random.rand(N)
+    for i in range(m):
+        # iterate to find the ith eigenvector
+        for j in range(n):
+            # compute the product (J^T \Sigma J)u step by step.
+            u_n = J.T@(np.diag(Sigma)@(J@u))
+            u_n/=np.linalg.norm(u_n)
+            err[i,j]=np.linalg.norm(u_n-u)
+            u = u_n
+        U[:,i]=u
+        # compute the rayleigh quotient without making a big matrix:
+        RQ_num = (J@u)@np.diag(Sigma)@(J@u)
+        L[i]=RQ_num/(u.T@u)
+        J -= np.outer(J@u,u)
+    return L,U, err
+
