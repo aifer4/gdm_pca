@@ -43,6 +43,7 @@ def DY_3fld(i, Y, A, K, wC, DwC, cs2C, wN, DwN, cs2N,
     ordered the same way as the Y array.
 
     """
+    
     dY = np.zeros((7, len(K)))
     Phi, deltaG, vG, deltaC, vC, deltaN, vN =\
         Y[0, :], Y[1, :], Y[2, :], Y[3, :], Y[4, :], Y[5, :], Y[6, :]
