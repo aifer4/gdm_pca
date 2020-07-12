@@ -50,7 +50,11 @@ def deriv(x,f):
 @numba.njit()
 def Powit(J_static, Sigma, m, V0):
 <<<<<<< HEAD
+<<<<<<< HEAD
     """Power iteration eigensolver. Gets largest m eigenvalues and eigenvectors of J^T \Sigma J."""
+=======
+    """Power iteration eigensolver. Gets largest m eigenvalues of J^T \Sigma J."""
+>>>>>>> dae5f2455fcc600f40d1263b3305483a562231f0
 =======
     """Power iteration eigensolver. Gets largest m eigenvalues of J^T \Sigma J."""
 >>>>>>> dae5f2455fcc600f40d1263b3305483a562231f0
