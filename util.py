@@ -49,15 +49,8 @@ def deriv(x,f):
 
 @numba.njit()
 def Powit(J_static, Sigma, m, V0):
-<<<<<<< HEAD
-<<<<<<< HEAD
     """Power iteration eigensolver. Gets largest m eigenvalues and eigenvectors of J^T \Sigma J."""
-=======
-    """Power iteration eigensolver. Gets largest m eigenvalues of J^T \Sigma J."""
->>>>>>> dae5f2455fcc600f40d1263b3305483a562231f0
-=======
-    """Power iteration eigensolver. Gets largest m eigenvalues of J^T \Sigma J."""
->>>>>>> dae5f2455fcc600f40d1263b3305483a562231f0
+
     J = np.copy(J_static)
     n = 50
     # get N largest eigenvalues and eigenvectors of A using power iteration
@@ -83,3 +76,12 @@ def Powit(J_static, Sigma, m, V0):
         L[i]=RQ_num/(u.T@u)
         J -= np.outer(J@u,u)
     return L,U, err
+
+def RRMSR(x1,x2):
+    # relative root mean square error
+    rmse = np.sqrt(np.mean((x2-x1)**2))
+    rms2 = np.sqrt(np.mean(x2**2))
+    return rmse/rms2
+
+def RMS(x):
+    return np.sqrt(np.mean(x**2))

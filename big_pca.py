@@ -109,6 +109,7 @@ deltaD, vD, cs2D, delta_pD = deltaD.T, vD.T, cs2D.T, delta_pD.T
 Cl2 = spectra.get_Cl_2fld(L, L_eval, X, JLX, DJLX, A[::2], K, wD, cs2D,
                           deltaD[0], vD[0], OmegaB0, OmegaC0, OmegaG0, OmegaN0,
                           As, TCMB0, h)
+print(Cl)
 plt.plot(Cl)
 plt.plot(Cl2)
 plt.show()

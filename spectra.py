@@ -133,9 +133,9 @@ def get_Cl_err(L, Cl):
     theta_pix = 0.0012  # rad
     sigma_pix = 16.e-6
     wbar = 1/(0.33e-15)
-    B_cl = np.exp(-L*(L + 1)/l_s**2)
+    B_cl_sqr = np.exp(-L*(L + 1)/l_s**2)
 
     err = np.sqrt(
-        (2/((2*L+1)*f_sky)) * (Cl + wbar**(-1) * B_cl**-2)**2
+        (2/((2*L+1)*f_sky)) * (Cl + wbar**(-1) * B_cl_sqr**-1)**2
     )
     return err
